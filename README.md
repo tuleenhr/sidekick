@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sidekick: a personal AI chief of staff
 
-## Getting Started
+A web app that runs my life admin. It reads my inbox, tracks deadlines and open loops, and briefs me on what actually matters today. It works through one chat interface backed by Llama 3.3 on Groq, with a deliberately minimal main screen.
 
-First, run the development server:
+The design rule: **no feature gets in unless I'd use it every day.**
+
+## What it does
+
+- **Email triage:** reads Gmail and sorts what needs a reply, what can wait and what to ignore, and drafts responses
+- **Daily brief:** pulls calendar (Google and iCloud via CalDAV), deadlines and open loops into one morning summary
+- **Deadlines and "waiting on":** tracks things I owe and things other people owe me
+- **Chat as the brain:** a brain-dump inbox, "what now?" and "should I bother?" prompts, with long-term memory of my context
+- **Life tools:** home tasks and resets, a meal assistant, trip packing, and prayer times
+
+## Stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Supabase (Postgres) · NextAuth with Google OAuth · Gmail API · CalDAV (tsdav) · Groq (Llama 3.3, through an adapter that keeps the Anthropic SDK interface) · Tailwind CSS 4 · Vercel
+
+24 API routes back the app. The Supabase schema covers open loops, deadlines, email triage, briefings, chat history and user context.
+
+## Running it locally
+
+See [SETUP.md](SETUP.md) for the full Google Cloud and Supabase setup.
 
 ```bash
+npm install
+cp .env.example .env.local   # Anthropic, Google OAuth, Supabase keys
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Status
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Personal project I use daily.
